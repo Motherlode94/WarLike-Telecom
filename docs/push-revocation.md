@@ -1,0 +1,2 @@
+# Telecom revocation
+Telecom proxies POST push-revoke-session to Networks with the app forced to telecom. Disabling browser notices attempts server revocation, local unsubscribe and notification cleanup. Existing logout is proxied to Networks, which deletes subscriptions for the logged-out session before central logout. Telecom background subscription registration and real delivery are not yet implemented.
