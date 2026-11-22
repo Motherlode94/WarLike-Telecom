@@ -1,1 +1,3 @@
 self.addEventListener('notificationclick',event=>{event.notification.close();event.waitUntil((async()=>{const windows=await self.clients.matchAll({type:'window',includeUncontrolled:true});const client=windows.find(c=>new URL(c.url).origin===self.location.origin);if(client)return client.focus();return self.clients.openWindow('/');})());});
+
+self.addEventListener('push',event=>{let d;try{d=event.data?.json();}catch{return;}if(!['call','message'].includes(d?.kind))return;event.waitUntil(self.registration.showNotification('WarLike Telecom',{body:d.kind==='call'?'Vous avez un appel entrant.':'Vous avez un nouveau message.',tag:d.kind==='call'?'warlike-call':'warlike-message'}));});
